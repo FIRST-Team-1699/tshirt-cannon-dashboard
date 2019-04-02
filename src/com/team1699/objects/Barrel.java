@@ -3,7 +3,6 @@ package com.team1699.objects;
 import com.team1699.graphics.Assets;
 import com.team1699.utils.BarrelState;
 
-import java.awt.Color;
 import java.awt.Graphics;
 
 public class Barrel extends DrawableObject {
@@ -25,7 +24,18 @@ public class Barrel extends DrawableObject {
 
     @Override
     public void render(Graphics g) {
-        g.setColor(Color.RED);
-        g.drawImage(Assets.barrelEmpty, 100 + (50 * barrelNumber), 0, null);
+        switch(barrelState){
+            case EMPTY:
+                g.drawImage(Assets.barrelEmpty, 100 + (50 * barrelNumber), 0, null);
+                break;
+            case LOADED:
+                g.drawImage(Assets.barrelLoaded, 100 + (50 * barrelNumber), 0, null);
+                break;
+            case ERROR:
+                g.drawImage(Assets.barrelError, 100 + (50 * barrelNumber), 0, null);
+                break;
+                default:
+                    System.out.println("Unexpected Barrel State");
+        }
     }
 }
