@@ -1,4 +1,0 @@
-This is a list of potential states to add in the future:
-ConnectingState - Displayed when awaiting connection to the robot
-ErrorState - Displayed when there is a major error (most likely a connection error)
-MainMenuState - Starting screen so doesn't auto connect
