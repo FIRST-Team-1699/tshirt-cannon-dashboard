@@ -1,5 +1,6 @@
 package com.team1699;
 
+import com.team1699.graphics.Assets;
 import com.team1699.graphics.Window;
 import com.team1699.states.DashboardState;
 import com.team1699.states.StateManager;
@@ -31,6 +32,9 @@ public class Dashboard implements Runnable {
     private Dashboard(){
         //Inits states
         new DashboardState();
+
+        //Load Images
+        Assets.init();
 
         //Sets current state to dashboard TODO Change to another state if needed
         StateManager.getInstance().setCurrentState("DashboardState");

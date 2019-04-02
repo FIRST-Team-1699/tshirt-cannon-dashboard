@@ -1,5 +1,6 @@
 package com.team1699.objects;
 
+import com.team1699.graphics.Assets;
 import com.team1699.utils.BarrelState;
 
 import java.awt.Color;
@@ -25,6 +26,6 @@ public class Barrel extends DrawableObject {
     @Override
     public void render(Graphics g) {
         g.setColor(Color.RED);
-        g.fillRect(100 + (50 * barrelNumber), 100, 40, 40);
+        g.drawImage(Assets.barrelEmpty, 100 + (50 * barrelNumber), 0, null);
     }
 }

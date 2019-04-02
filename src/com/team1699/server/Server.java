@@ -16,6 +16,8 @@ public class Server implements Runnable {
     private Thread thread;
     private boolean running;
 
+    //TODO Make SSL Connection
+
     private Server(){
 
     }
