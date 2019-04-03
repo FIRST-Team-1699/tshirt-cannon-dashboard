@@ -1,4 +1,16 @@
 package com.team1699.config;
 
-public class Config {
+class Config {
+
+    protected Config(final String name, final String data){
+
+    }
+
+    protected Config(final String name, final int data){
+
+    }
+
+    protected Config(final String name, final double data){
+
+    }
 }
