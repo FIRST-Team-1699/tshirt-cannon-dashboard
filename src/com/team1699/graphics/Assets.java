@@ -10,9 +10,9 @@ public class Assets {
         System.out.println("---------Loading Images---------");
         SpriteSheet testSheet = new SpriteSheet(ImageLoader.loadImage("/images/sheet.png"));
 
-        barrelEmpty = testSheet.crop(0, 0, 32, 32);
-        barrelLoaded = testSheet.crop(32, 0, 32, 32);
-        barrelError = testSheet.crop(64, 0, 32, 32);
+        barrelEmpty = testSheet.crop(96, 0, 32, 32);
+        barrelLoaded = testSheet.crop(64, 0, 32, 32);
+        barrelError = testSheet.crop(0, 32, 32, 32);
     }
 
 }
