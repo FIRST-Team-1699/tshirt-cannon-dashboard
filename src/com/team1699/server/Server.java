@@ -2,6 +2,8 @@ package com.team1699.server;
 
 import javax.net.ssl.*;
 import java.io.*;
+import java.net.ServerSocket;
+import java.net.Socket;
 import java.security.*;
 import java.security.cert.CertificateException;
 
@@ -22,89 +24,37 @@ public class Server implements Runnable {
     private boolean running;
     private final int port;
 
-    //TODO Make SSL Connection
+    private Socket socket;
+    private ServerSocket server;
+    private DataInputStream in;
+    private DataOutputStream out;
 
     private Server(){
         this.port = 12345; //TODO Load port from config file
 
-        KeyGenerator.generateKeyFile();
-    }
+        try{
+            server = new ServerSocket(port);
+            System.out.println("----------Server Started----------");
 
-    private SSLContext createSSLContext(){ //TODO Add file name to constants and change
-        try {
-            KeyStore keyStore = KeyStore.getInstance("JKS");
-            keyStore.load(new FileInputStream("mytestkey.jks"), "passphrase".toCharArray()); //TODO Change passphrase and file name
+            System.out.println("----------Waiting for Client----------");
 
-            KeyManagerFactory keyManagerFactory = KeyManagerFactory.getInstance("SunX509");
-            keyManagerFactory.init(keyStore, "passphrase".toCharArray());
-            KeyManager[] km = keyManagerFactory.getKeyManagers();
+            socket = server.accept();
+            System.out.println("----------Client Connected----------");
 
-            TrustManagerFactory trustManagerFactory = TrustManagerFactory.getInstance("SunX509");
-            trustManagerFactory.init(keyStore);
-            TrustManager[] tm = trustManagerFactory.getTrustManagers();
+            in = new DataInputStream(new BufferedInputStream(socket.getInputStream()));
+            out = new DataOutputStream(new BufferedOutputStream(socket.getOutputStream()));
 
-            SSLContext sslContext = SSLContext.getInstance("TLSv1");
-            sslContext.init(km, tm, null);
-            return sslContext;
-        }catch(NoSuchAlgorithmException | KeyManagementException | KeyStoreException | UnrecoverableKeyException | CertificateException | IOException e){
+            start();
+        } catch(IOException e){
             e.printStackTrace();
         }
-        return null;
     }
 
     @Override
     public void run() {
         while(running){
-            //Run server
-            //TODO Add handle client connect
-            //TODO Only one client should ever connect. Handle other connections
+            //TODO Check data coming from client. May have to parse byte array
 
-            SSLContext sslContext = this.createSSLContext();
-
-            try{
-                SSLServerSocketFactory sslServerSocketFactory = null;
-                if (sslContext != null) {
-                    sslServerSocketFactory = sslContext.getServerSocketFactory();
-                }
-
-                SSLServerSocket sslServerSocket = null;
-                if (sslServerSocketFactory != null) {
-                    sslServerSocket = (SSLServerSocket) sslServerSocketFactory.createServerSocket(port);
-                }
-
-                System.out.println("Server Started");
-
-                while(running){
-                    SSLSocket sslSocket = (SSLSocket) sslServerSocket.accept();
-
-                    sslSocket.setEnabledCipherSuites(sslSocket.getSupportedCipherSuites());
-                    sslSocket.startHandshake();
-
-                    new Client().start(); //TODO Add a way to stop the server
-
-                    SSLSession sslSession = sslSocket.getSession();
-                    System.out.println("SSLSession :");
-                    System.out.println("\tProtocol : " + sslSession.getProtocol());
-                    System.out.println("Cipher suite : " + sslSession.getCipherSuite());
-
-                    BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(sslSocket.getInputStream()));
-                    PrintWriter printWriter = new PrintWriter(new OutputStreamWriter(sslSocket.getOutputStream()));
-
-                    String line;
-                    while(running) {
-                        line = bufferedReader.readLine();
-                        if (line != null) {
-                            System.out.println("Input: " + line);
-                        }
-                    }
-
-                    printWriter.print("HTTP/1.1 200\r\n");
-                    printWriter.flush();
-                    sslSocket.close();
-                }
-            }catch (IOException e){
-                e.printStackTrace();
-            }
         }
     }
 
