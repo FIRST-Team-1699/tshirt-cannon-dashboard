@@ -20,8 +20,8 @@ public class Barrel extends DrawableObject {
     public Barrel(final int barrelNumber, final BarrelState initBarrelState){
         this.barrelNumber = barrelNumber;
         this.barrelState = initBarrelState;
-        barrelX = (int) (BARREL_RADIUS * Math.sin(barrelNumber * SCALAR + SCALAR) + BARREL_CENTER_X);
-        barrelY = (int) (BARREL_RADIUS * Math.cos(barrelNumber * SCALAR + SCALAR) + BARREL_CENTER_Y);
+        barrelX = (int) (BARREL_RADIUS * Math.sin(barrelNumber * SCALAR) + BARREL_CENTER_X);
+        barrelY = (int) (BARREL_RADIUS * Math.cos(barrelNumber * SCALAR) + BARREL_CENTER_Y);
     }
 
     @Override

@@ -16,7 +16,7 @@ public class DashboardState implements State {
         StateManager.getInstance().addState("DashboardState", this);
 
         barrelMap = new ConcurrentHashMap<>();
-        for(int i = 0; i < BARREL_NUMBER; i++){
+        for(int i = 1; i < BARREL_NUMBER + 1; i++){
             System.out.println("Barrel " + i + " added.");
             barrelMap.put(i, new Barrel(i, BarrelState.LOADED)); //TODO Eval init barrel state
         }
@@ -30,5 +30,9 @@ public class DashboardState implements State {
     @Override
     public void render(final Graphics g) {
         barrelMap.forEach((k, v) -> v.render(g));
+    }
+
+    public void setBarrelState(final int barrelNumber, final BarrelState state){
+        barrelMap.get(barrelNumber).setBarrelState(state);
     }
 }
