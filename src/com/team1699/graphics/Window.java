@@ -18,14 +18,13 @@ public class Window {
 }
 
     private final Dimension size;
-    private final String title;
+    private static final String title = "T-Shirt Cannon Dashboard";
 
     private final JFrame frame;
     private final Canvas canvas;
 
     private Window(){
         this.size = new Dimension(800, 600); //TODO Change size
-        this.title = "T-Shirt Cannon Dashboard";
 
         frame = new JFrame(title);
         frame.setSize(size);

@@ -1,5 +1,7 @@
 package com.team1699.states;
 
+import com.team1699.userIO.KeyManager;
+
 import java.awt.Graphics;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
@@ -33,6 +35,7 @@ public class StateManager {
     }
 
     public void tick() {
+        KeyManager.getInstance().tick();
         currentState.tick();
         try {
             currentState.tick();

@@ -1,16 +1,16 @@
 package com.team1699.server;
 
 import com.team1699.states.DashboardState;
-import com.team1699.states.State;
 import com.team1699.states.StateManager;
 import com.team1699.utils.BarrelState;
 
-import javax.net.ssl.*;
-import java.io.*;
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.security.*;
-import java.security.cert.CertificateException;
 import java.util.Base64;
 
 public class Server implements Runnable {

@@ -2,8 +2,9 @@ package com.team1699;
 
 import com.team1699.graphics.Assets;
 import com.team1699.graphics.Window;
-import com.team1699.states.DashboardState;
-import com.team1699.states.StateManager;
+import com.team1699.states.*;
+import com.team1699.userIO.KeyManager;
+import com.team1699.userIO.MouseManager;
 
 import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
@@ -30,16 +31,24 @@ public class Dashboard implements Runnable {
     private Graphics g;
 
     private Dashboard(){
-        //Inits states
-        new DashboardState();
-
         //Load Images
         Assets.init();
 
+        //Inits states
+        new DashboardState();
+        new MainMenuState();
+        new MathState();
+        new ConnectingState();
+
         //Sets current state to dashboard TODO Change to another state if needed
-        StateManager.getInstance().setCurrentState("DashboardState");
+        StateManager.getInstance().setCurrentState("ConnectingState");
 
         Window.getInstance(); //Inits window
+        Window.getInstance().getFrame().addKeyListener(KeyManager.getInstance());
+        Window.getInstance().getFrame().addMouseListener(MouseManager.getInstance());
+        Window.getInstance().getFrame().addMouseMotionListener(MouseManager.getInstance());
+        Window.getInstance().getCanvas().addMouseListener(MouseManager.getInstance());
+        Window.getInstance().getCanvas().addMouseMotionListener(MouseManager.getInstance());
     }
 
     @Override
