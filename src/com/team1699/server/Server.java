@@ -67,12 +67,13 @@ public class Server implements Runnable {
             String clientMsg = "";
             try{
                 int inputLength = in.read(input);
-                clientMsg = Base64.getEncoder().encodeToString(input);
+                clientMsg = new String(input);
                 System.out.println(clientMsg);
             } catch(IOException e){
                 e.printStackTrace();
             }
 
+            //TODO Add exception? that is thrown when invalid text is passed to server
             //Data format from client - Barrel# BarrelState (0 - Empty, 1 - Full, 2 - Error) - Ex. 3 0 - Barrel 3 is empty
             if(!clientMsg.equals("")){ //We got a reply TODO I think. Need to check that it will actually do/not do things when we think it will
                 String[] splitInput = clientMsg.split(" ");
