@@ -32,6 +32,10 @@ public class DashboardState implements State {
         barrelMap.forEach((k, v) -> v.render(g));
     }
 
+    public BarrelState getBarrelState(final int barrelNumber){
+        return barrelMap.get(barrelNumber).getBarrelState();
+    }
+
     public void setBarrelState(final int barrelNumber, final BarrelState state){
         barrelMap.get(barrelNumber).setBarrelState(state);
     }

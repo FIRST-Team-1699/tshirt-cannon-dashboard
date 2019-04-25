@@ -1,6 +1,7 @@
 package com.team1699.server;
 
 import com.team1699.states.DashboardState;
+import com.team1699.states.State;
 import com.team1699.states.StateManager;
 import com.team1699.utils.BarrelState;
 
@@ -97,6 +98,7 @@ public class Server implements Runnable {
                 }
 
                 if(StateManager.getInstance().getCurrentState() instanceof DashboardState){
+                    System.out.println("----------Switching from " + ((DashboardState) StateManager.getInstance().getCurrentState()).getBarrelState(barrelNum) + " to " + barrelState + "----------");
                     ((DashboardState) StateManager.getInstance().getCurrentState()).setBarrelState(barrelNum, barrelState);
                 }
             }

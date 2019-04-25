@@ -57,6 +57,10 @@ public class Barrel extends DrawableObject {
         }
     }
 
+    public BarrelState getBarrelState() {
+        return barrelState;
+    }
+
     public void setBarrelState(final BarrelState barrelState){
         this.barrelState = barrelState;
     }
