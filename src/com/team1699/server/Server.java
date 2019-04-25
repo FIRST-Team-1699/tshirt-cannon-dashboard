@@ -35,8 +35,11 @@ public class Server implements Runnable {
     private DataInputStream in;
     private DataOutputStream out;
 
+    private boolean isConnected;
+
     private Server(){
         this.port = 12345; //TODO Load port from config file
+        this.isConnected = false; //TODO Implement
 
         try{
             server = new ServerSocket(port);
@@ -65,6 +68,7 @@ public class Server implements Runnable {
             try{
                 int inputLength = in.read(input);
                 clientMsg = Base64.getEncoder().encodeToString(input);
+                System.out.println(clientMsg);
             } catch(IOException e){
                 e.printStackTrace();
             }
@@ -73,6 +77,7 @@ public class Server implements Runnable {
             if(!clientMsg.equals("")){ //We got a reply TODO I think. Need to check that it will actually do/not do things when we think it will
                 String[] splitInput = clientMsg.split(" ");
                 //TODO try catch parses
+                //TODO Make sure we are reading full array
                 int barrelNum = Integer.parseInt(splitInput[0]);
                 int barrelStateNum = Integer.parseInt(splitInput[1]);
 
@@ -95,6 +100,10 @@ public class Server implements Runnable {
                 }
             }
         }
+    }
+
+    public boolean isConnected() {
+        return isConnected;
     }
 
     public synchronized void start(){

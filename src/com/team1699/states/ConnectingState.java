@@ -1,5 +1,7 @@
 package com.team1699.states;
 
+import com.team1699.server.Server;
+
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
@@ -12,7 +14,10 @@ public class ConnectingState implements State{
 
     @Override
     public void tick() {
-
+        //Test is server is connected to client and handle state change
+        if(Server.getInstance().isConnected()){
+            StateManager.getInstance().setCurrentState("Dashboard State");
+        }
     }
 
     @Override
