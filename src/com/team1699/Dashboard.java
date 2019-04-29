@@ -41,7 +41,7 @@ public class Dashboard implements Runnable {
         new ConnectingState();
 
         //Sets current state to dashboard TODO Change to another state if needed
-        StateManager.getInstance().setCurrentState("ConnectingState");
+        StateManager.getInstance().setCurrentState("DashboardState");
 
         Window.getInstance(); //Inits window
         Window.getInstance().getFrame().addKeyListener(KeyManager.getInstance());

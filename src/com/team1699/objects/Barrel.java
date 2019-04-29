@@ -1,6 +1,8 @@
 package com.team1699.objects;
 
+import com.team1699.Dashboard;
 import com.team1699.graphics.Assets;
+import com.team1699.states.DashboardState;
 import com.team1699.utils.BarrelState;
 
 import java.awt.Graphics;
@@ -8,10 +10,10 @@ import java.awt.Graphics;
 public class Barrel extends DrawableObject {
 
     //This class represents a single barrel that will be drawn to the screen
-    private static final int BARREL_CENTER_X = 400;
-    private static final int BARREL_CENTER_Y = 300;
+    private static final int BARREL_CENTER_X = 390;
+    private static final int BARREL_CENTER_Y = 290;
     private static final int BARREL_RADIUS = 75;
-    private static final double SCALAR = (2 * Math.PI) / 8; //2 pi radians divided by total number of barrels (+1 for spacing reasons)
+    private static final double SCALAR = DashboardState.BARREL_NUMBER % 2 == 0 ? (2 * Math.PI) / DashboardState.BARREL_NUMBER : (2 * Math.PI) / (DashboardState.BARREL_NUMBER + 1); //2 pi radians divided by total number of barrels (+1 for spacing reasons)
 
     private final int barrelNumber, barrelX, barrelY;
     private BarrelState barrelState;
@@ -27,17 +29,17 @@ public class Barrel extends DrawableObject {
     @Override
     public void tick() {
         //Code to test barrel switching
-        tickCount++;
-        if(tickCount % 6000 == 0){
-            if(barrelState == BarrelState.LOADED){
-                barrelState = BarrelState.EMPTY;
-            }else if(barrelState == BarrelState.EMPTY){
-                barrelState = BarrelState.ERROR;
-            }else if(barrelState == BarrelState.ERROR){
-                barrelState = BarrelState.LOADED;
-            }
-            tickCount = 0;
-        }
+//        tickCount++;
+//        if(tickCount % 6000 == 0){
+//            if(barrelState == BarrelState.LOADED){
+//                barrelState = BarrelState.EMPTY;
+//            }else if(barrelState == BarrelState.EMPTY){
+//                barrelState = BarrelState.ERROR;
+//            }else if(barrelState == BarrelState.ERROR){
+//                barrelState = BarrelState.LOADED;
+//            }
+//            tickCount = 0;
+//        }
     }
 
     @Override

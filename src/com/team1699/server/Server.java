@@ -4,6 +4,7 @@ import com.team1699.states.DashboardState;
 import com.team1699.states.State;
 import com.team1699.states.StateManager;
 import com.team1699.utils.BarrelState;
+import com.team1699.utils.Utils;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
@@ -60,6 +61,7 @@ public class Server implements Runnable {
         }
     }
 
+    //TODO Handle disconnect
     @Override
     public void run() {
         while(running){
@@ -81,7 +83,7 @@ public class Server implements Runnable {
                 //TODO try catch parses
                 //TODO Make sure we are reading full array
                 int barrelNum = Integer.parseInt(splitInput[0]);
-                int barrelStateNum = Integer.parseInt(splitInput[1]);
+                int barrelStateNum = Integer.parseInt(Utils.cleanTextContent(splitInput[1]));
 
                 BarrelState barrelState;
 
