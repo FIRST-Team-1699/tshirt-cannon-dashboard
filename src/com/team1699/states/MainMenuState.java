@@ -19,7 +19,7 @@ public class MainMenuState implements State{
 
         //Add buttons TODO Change positions to make it look nice
         buttons.add(new Button(Assets.mathButtonPressed, Assets.mathButtonReleased, "MathState", 100, 100));
-        buttons.add(new Button(Assets.dashButtonPressed, Assets.dashButtonReleased, "DashboardState", 400, 100));
+        buttons.add(new Button(Assets.dashButtonPressed, Assets.dashButtonReleased, "ConnectingState", 400, 100));
     }
 
     @Override

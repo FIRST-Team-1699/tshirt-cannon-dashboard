@@ -12,7 +12,6 @@ import java.awt.image.BufferStrategy;
 public class Dashboard implements Runnable {
 
     //This is the main class that will run the Dashboard
-
     private static Dashboard instance;
 
     public static Dashboard getInstance(){
@@ -40,7 +39,7 @@ public class Dashboard implements Runnable {
         new MathState();
         new ConnectingState();
 
-        //Sets current state to dashboard TODO Change to another state if needed
+        //Sets current state to mainmenu
         StateManager.getInstance().setCurrentState("MainMenuState");
 
         Window.getInstance(); //Inits window
@@ -85,7 +84,7 @@ public class Dashboard implements Runnable {
         g.dispose();
     }
 
-    public synchronized void start(){
+    synchronized void start(){
         if(running){
             return;
         }
@@ -94,7 +93,7 @@ public class Dashboard implements Runnable {
         thread.start();
     }
 
-    public synchronized void stop(){
+    synchronized void stop(){
         if(!running){
             return;
         }

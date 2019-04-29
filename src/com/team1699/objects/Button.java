@@ -27,12 +27,7 @@ public class Button extends DrawableObject{
 
     @Override
     public void tick() {
-        //TODO Make it so button picture changes
-        if(contains(MouseManager.getInstance().getMouseX(), MouseManager.getInstance().getMouseY())){
-            hovered = true;
-        }else{
-            hovered = false;
-        }
+        hovered = contains(MouseManager.getInstance().getMouseX(), MouseManager.getInstance().getMouseY());
 
         if(hovered && MouseManager.getInstance().isLeftPressed()){
             StateManager.getInstance().setCurrentState(transition);
