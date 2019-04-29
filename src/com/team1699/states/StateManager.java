@@ -1,6 +1,7 @@
 package com.team1699.states;
 
 import com.team1699.userIO.KeyManager;
+import com.team1699.userIO.MouseManager;
 
 import java.awt.Graphics;
 import java.util.Map;

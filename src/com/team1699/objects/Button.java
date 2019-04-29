@@ -13,7 +13,7 @@ public class Button extends DrawableObject{
     private final String transition;
     private final Rectangle bounds;
     private final int x, y;
-    private boolean pressed;
+    private boolean hovered;
 
     public Button(final BufferedImage pressedImg, final BufferedImage releasedImg, final String transition, final int x, final int y){
         this.pressedImg = pressedImg;
@@ -22,33 +22,33 @@ public class Button extends DrawableObject{
         this.x = x;
         this.y = y;
         this.bounds = new Rectangle(x, y, releasedImg.getWidth(), releasedImg.getHeight());
-        pressed = false;
+        hovered = false;
     }
 
     @Override
     public void tick() {
         //TODO Make it so button picture changes
-        if(bounds.contains(MouseManager.getInstance().getMouseX(), MouseManager.getInstance().getMouseY()) && MouseManager.getInstance().isLeftPressed()){
-            pressed = true;
+        if(contains(MouseManager.getInstance().getMouseX(), MouseManager.getInstance().getMouseY())){
+            hovered = true;
+        }else{
+            hovered = false;
         }
 
-        if(pressed){
-            //TODO Change sleep to make it feel better
-            try {
-                Thread.sleep(500);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
+        if(hovered && MouseManager.getInstance().isLeftPressed()){
             StateManager.getInstance().setCurrentState(transition);
         }
     }
 
     @Override
     public void render(Graphics g) {
-        if(pressed){
+        if(hovered){
             g.drawImage(pressedImg, x, y, null);
         }else{
             g.drawImage(releasedImg, x, y, null);
         }
+    }
+
+    private boolean contains(final int mouseX, final int mouseY){
+        return (mouseX >= bounds.x && mouseX <= (bounds.x + bounds.width)) && (mouseY >= bounds.y && mouseY <= (bounds.y + bounds.height));
     }
 }

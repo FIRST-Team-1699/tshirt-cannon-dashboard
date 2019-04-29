@@ -4,7 +4,7 @@ import java.awt.image.BufferedImage;
 
 public class Assets {
 
-    public static BufferedImage barrelLoaded, barrelEmpty, barrelError, mathButtonPressed, mathButtonReleased;
+    public static BufferedImage barrelLoaded, barrelEmpty, barrelError, mathButtonPressed, mathButtonReleased, dashButtonPressed, dashButtonReleased;
 
     public static void init(){
         System.out.println("---------Loading Images---------");
@@ -16,6 +16,8 @@ public class Assets {
         barrelError = testSheet.crop(0, 32, 32, 32);
         mathButtonReleased = buttonSheet.crop(0, 0, 200, 100);
         mathButtonPressed = buttonSheet.crop(200, 0, 200, 100);
+        dashButtonReleased = buttonSheet.crop(0, 100, 200, 100);
+        dashButtonPressed = buttonSheet.crop(200, 100, 200, 100);
     }
 
 }
