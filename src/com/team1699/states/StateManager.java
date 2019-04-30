@@ -33,6 +33,7 @@ public class StateManager {
     public synchronized void setCurrentState(final String name) {
         System.out.println("Set new state: " + name);
         currentState = stateMap.get(name);
+        currentState.init();
     }
 
     public void tick() {

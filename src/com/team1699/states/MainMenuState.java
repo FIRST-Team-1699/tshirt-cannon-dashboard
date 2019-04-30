@@ -23,6 +23,11 @@ public class MainMenuState implements State{
     }
 
     @Override
+    public void init(){
+
+    }
+
+    @Override
     public void tick() {
         buttons.forEach(Button::tick);
     }

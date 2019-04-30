@@ -23,6 +23,11 @@ public class DashboardState implements State {
     }
 
     @Override
+    public void init(){
+
+    }
+
+    @Override
     public void tick() {
         barrelMap.forEach((k, v) -> v.tick());
     }

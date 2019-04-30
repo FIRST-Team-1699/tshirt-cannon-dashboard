@@ -2,7 +2,11 @@ package com.team1699;
 
 import com.team1699.graphics.Assets;
 import com.team1699.graphics.Window;
-import com.team1699.states.*;
+import com.team1699.states.ConnectingState;
+import com.team1699.states.DashboardState;
+import com.team1699.states.MainMenuState;
+import com.team1699.states.MathState;
+import com.team1699.states.StateManager;
 import com.team1699.userIO.KeyManager;
 import com.team1699.userIO.MouseManager;
 

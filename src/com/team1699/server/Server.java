@@ -42,7 +42,11 @@ public class Server implements Runnable {
     private Server(){
         this.port = 12345; //TODO Load port from config file
         this.isConnected = false; //TODO Implement
+    }
 
+    //TODO Handle disconnect
+    @Override
+    public void run() {
         try{
             server = new ServerSocket(port);
             System.out.println("----------Server Started----------");
@@ -54,16 +58,11 @@ public class Server implements Runnable {
 
             in = new DataInputStream(new BufferedInputStream(socket.getInputStream()));
             out = new DataOutputStream(new BufferedOutputStream(socket.getOutputStream()));
-
-            start();
+            this.isConnected = true;
         } catch(IOException e){
             e.printStackTrace();
         }
-    }
 
-    //TODO Handle disconnect
-    @Override
-    public void run() {
         while(running){
             //TODO Check data coming from client. May have to parse byte array
             byte[] input = new byte[128];

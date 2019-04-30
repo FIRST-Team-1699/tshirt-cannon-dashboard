@@ -12,10 +12,16 @@ public class ConnectingState implements State{
         StateManager.getInstance().addState("ConnectingState", this);
     }
 
+    //TODO add start
+
+    @Override
+    public void init(){
+        Server.getInstance().start();
+    }
+
     @Override
     public void tick() {
         //Test is server is connected to client and handle state change
-        //TODO Fix breaking here
         if(Server.getInstance().isConnected()){
             StateManager.getInstance().setCurrentState("Dashboard State");
         }

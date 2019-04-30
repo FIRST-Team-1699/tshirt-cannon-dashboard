@@ -9,6 +9,11 @@ public class MathState implements State{
     }
 
     @Override
+    public void init(){
+
+    }
+
+    @Override
     public void tick() {
 
     }
