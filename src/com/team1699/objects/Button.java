@@ -7,7 +7,7 @@ import java.awt.Graphics;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 
-public class Button extends DrawableObject{
+public class Button implements DrawableObject{
 
     private final BufferedImage pressedImg, releasedImg;
     private final String transition;

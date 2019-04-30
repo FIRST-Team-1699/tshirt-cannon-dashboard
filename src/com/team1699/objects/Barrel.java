@@ -7,7 +7,7 @@ import com.team1699.utils.BarrelState;
 
 import java.awt.Graphics;
 
-public class Barrel extends DrawableObject {
+public class Barrel implements DrawableObject {
 
     //This class represents a single barrel that will be drawn to the screen
     private static final int BARREL_CENTER_X = 390;

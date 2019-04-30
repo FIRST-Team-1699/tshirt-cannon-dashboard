@@ -41,7 +41,7 @@ public class Server implements Runnable {
 
     private Server(){
         this.port = 12345; //TODO Load port from config file
-        this.isConnected = false; //TODO Implement
+        this.isConnected = false;
     }
 
     //TODO Handle disconnect
@@ -77,10 +77,9 @@ public class Server implements Runnable {
 
             //TODO Add exception? that is thrown when invalid text is passed to server
             //Data format from client - Barrel# BarrelState (0 - Empty, 1 - Full, 2 - Error) - Ex. 3 0 - Barrel 3 is empty
-            if(!clientMsg.equals("")){ //We got a reply TODO I think. Need to check that it will actually do/not do things when we think it will
+            if(!clientMsg.equals("")){ //We got a reply
                 String[] splitInput = clientMsg.split(" ");
                 //TODO try catch parses
-                //TODO Make sure we are reading full array
                 int barrelNum = Integer.parseInt(splitInput[0]);
                 int barrelStateNum = Integer.parseInt(Utils.cleanTextContent(splitInput[1]));
 
