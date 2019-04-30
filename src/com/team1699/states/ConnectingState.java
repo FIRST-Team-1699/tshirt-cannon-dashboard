@@ -23,7 +23,7 @@ public class ConnectingState implements State{
     public void tick() {
         //Test is server is connected to client and handle state change
         if(Server.getInstance().isConnected()){
-            StateManager.getInstance().setCurrentState("Dashboard State");
+            StateManager.getInstance().setCurrentState("DashboardState");
         }
     }
 

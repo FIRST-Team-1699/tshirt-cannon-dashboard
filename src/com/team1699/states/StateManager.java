@@ -1,7 +1,6 @@
 package com.team1699.states;
 
 import com.team1699.userIO.KeyManager;
-import com.team1699.userIO.MouseManager;
 
 import java.awt.Graphics;
 import java.util.Map;
@@ -38,7 +37,6 @@ public class StateManager {
 
     public void tick() {
         KeyManager.getInstance().tick();
-        currentState.tick();
         try {
             currentState.tick();
         } catch (NullPointerException e) {
@@ -47,7 +45,6 @@ public class StateManager {
     }
 
     public void render(final Graphics g) {
-        currentState.render(g);
         try {
             currentState.render(g);
         } catch (NullPointerException e) {
