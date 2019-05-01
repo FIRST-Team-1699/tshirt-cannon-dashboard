@@ -12,8 +12,12 @@ public class DashboardState implements State {
     private final Map<Integer, Barrel> barrelMap;
     public static final int BARREL_NUMBER = 7; //TODO Move to a better place
 
+    private boolean shotReady;
+
     public DashboardState(){
         StateManager.getInstance().addState("DashboardState", this);
+
+        this.shotReady = false;
 
         barrelMap = new ConcurrentHashMap<>();
         for(int i = 1; i < BARREL_NUMBER + 1; i++){
@@ -37,6 +41,16 @@ public class DashboardState implements State {
         g.setColor(Color.DARK_GRAY);
         g.fillRect(0, 0, 800, 600);
         barrelMap.forEach((k, v) -> v.render(g));
+        g.setColor(Color.lightGray);
+        Font f = new Font("Dialog", Font.PLAIN, 24);
+        g.setFont(f);
+        g.drawString("Shot Ready:", 335, 100);
+        if(shotReady){
+            g.setColor(Color.GREEN);
+        }else{
+            g.setColor(Color.RED);
+        }
+        g.fillRect(380, 110, 50, 50);
     }
 
     public BarrelState getBarrelState(final int barrelNumber){
