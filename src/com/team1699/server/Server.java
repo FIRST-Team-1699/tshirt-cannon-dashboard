@@ -11,8 +11,10 @@ import java.io.BufferedOutputStream;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
+import java.net.BindException;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.net.SocketException;
 import java.util.Base64;
 
 public class Server implements Runnable {
@@ -47,10 +49,16 @@ public class Server implements Runnable {
     //TODO Handle disconnect
     @Override
     public void run() {
-        try{
+        try {
             server = new ServerSocket(port);
             System.out.println("----------Server Started----------");
+        } catch(BindException e) {
+            System.out.println("----------Server Already Created----------");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
+        try{
             System.out.println("----------Waiting for Client----------");
 
             socket = server.accept();
@@ -59,7 +67,7 @@ public class Server implements Runnable {
             in = new DataInputStream(new BufferedInputStream(socket.getInputStream()));
             out = new DataOutputStream(new BufferedOutputStream(socket.getOutputStream()));
             this.isConnected = true;
-        } catch(IOException e){
+        }  catch(IOException e){
             e.printStackTrace();
         }
 
@@ -71,6 +79,9 @@ public class Server implements Runnable {
                 int inputLength = in.read(input);
                 clientMsg = new String(input);
                 System.out.println(clientMsg);
+            } catch(SocketException e){
+                this.isConnected = false;
+                StateManager.getInstance().setCurrentState("ConnectingState");
             } catch(IOException e){
                 e.printStackTrace();
             }
@@ -109,6 +120,10 @@ public class Server implements Runnable {
         return isConnected;
     }
 
+    public boolean isRunning() {
+        return running;
+    }
+
     public synchronized void start(){
         if(running){
             return;
@@ -124,6 +139,7 @@ public class Server implements Runnable {
         }
         running = false;
         try{
+            thread.interrupt();
             thread.join();
         }catch (InterruptedException e){
             e.printStackTrace();

@@ -12,10 +12,11 @@ public class ConnectingState implements State{
         StateManager.getInstance().addState("ConnectingState", this);
     }
 
-    //TODO add start
-
     @Override
     public void init(){
+        if(Server.getInstance().isRunning()){
+            Server.getInstance().stop();
+        }
         Server.getInstance().start();
     }
 
