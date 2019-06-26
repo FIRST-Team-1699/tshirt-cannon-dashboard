@@ -21,4 +21,9 @@ public class MessageManager {
 
         //TODO Add msg classes
     }
+
+    public ReceivedMessage getClassFromMessage(String input){
+        //TODO Split string get class and add message
+        return null;
+    }
 }
